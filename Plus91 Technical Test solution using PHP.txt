@@ -1,0 +1,61 @@
+<?php
+// PHP Program to find maximum weight
+// difference
+
+// return the max value of two numbers
+function maxi($a, $b)
+{
+	if ($a > $b)
+	{
+		return $a;
+	}
+	else
+	{
+		return $b;
+	}
+}
+
+function solve(&$arr, $n, $k)
+{
+	// sort the given array
+	sort($arr);
+
+	// Initializing the value to 0
+	$sum = 0;
+	$sum1 = 0;
+	$sum2 = 0;
+
+	// Getting the sum of the array
+	for ($i = 0; $i < $n; $i++)
+	{
+		$sum += $arr[$i];
+	}
+
+	// Getting the sum of first k elements
+	for ($i = 0; $i < $k; $i++)
+	{
+		$sum1 += $arr[$i];
+	}
+
+	// Getting the sum of (n-k) elements
+	for ($i = $k; $i < $n; $i++)
+	{
+		$sum2 += $arr[$i];
+	}
+
+	// Returning the maximum possible difference.
+	return maxi(abs($sum1 - ($sum - $sum1)),
+				abs($sum2 - ($sum - $sum2)));
+}
+
+// DriverCode
+$k = 2;
+$arr = array(8, 4, 5, 2, 10 );
+
+// calculate the numbers of
+// elements in the array
+$n = sizeof($arr);
+
+// call the solve function
+echo (solve($arr, $n, $k));
+?>
